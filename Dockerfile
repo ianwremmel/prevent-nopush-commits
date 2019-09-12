@@ -1,6 +1,6 @@
 FROM bash
 
-LABEL version="1.0.0"
+LABEL version="1.0.1"
 LABEL repository="http://github.com/ianwremmel/prevent-nopush-commits"
 LABEL homepage="http://github.com/ianwremmel/prevent-nopush-commits"
 LABEL maintainer="Ian Remmel <1182361+ianwremmel@users.noreply.github.com>"
@@ -14,6 +14,6 @@ RUN apk add git
 
 COPY LICENSE README.md /
 
-COPY "entrypoint" "/entrypoint"
-ENTRYPOINT ["/entrypoint"]
-CMD ["entrypoint"]
+COPY "entrypoint.sh" "/entrypoint.sh"
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["entrypoint.sh"]

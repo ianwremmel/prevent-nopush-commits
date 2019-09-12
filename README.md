@@ -13,6 +13,6 @@ workflow "Validate Commit Messages" {
 }
 
 action "Prevent nopush Commits" {
-    uses = "ianwremmel/prevent-nopush-commits@v1.0.0"
+    uses = "ianwremmel/prevent-nopush-commits@v1.0.1"
 }
 ```
