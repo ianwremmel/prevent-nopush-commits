@@ -6,13 +6,14 @@
 
 An example workflow to prevent `#no-push` commits follows:
 
-```hcl
-workflow "Validate Commit Messages" {
-    on = "push"
-    resolves = "Prevent nopush Commits"
-}
-
-action "Prevent nopush Commits" {
-    uses = "ianwremmel/prevent-nopush-commits@v1.0.1"
-}
+```yml
+on: push
+name: Validate
+jobs:
+  build:
+    name: ianwremmel/prevent-nopush-commits@v1.0.1
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ianwremmel/prevent-nopush-commits@v1.0.1
 ```
