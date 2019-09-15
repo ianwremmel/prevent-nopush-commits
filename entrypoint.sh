@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-git fetch origin master
-
 if [ "$(git log "$(git merge-base HEAD origin/master)"..HEAD | grep -c '^#no-?push')" -eq 0 ]; then 
     exit 0  
 else
