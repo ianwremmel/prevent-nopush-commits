@@ -14,6 +14,8 @@ jobs:
     name: ianwremmel/prevent-nopush-commits@v1.0.1
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: ianwremmel/prevent-nopush-commits@v1.0.1
 ```
