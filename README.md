@@ -11,7 +11,7 @@ on: push
 name: Validate
 jobs:
   build:
-    name: ianwremmel/prevent-nopush-commits@v1.0.1
+    name: ianwremmel/prevent-nopush-commits
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
