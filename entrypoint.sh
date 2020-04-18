@@ -19,7 +19,9 @@ if [ "$MERGE_BASE" == "$GITHUB_SHA" ]; then
 fi
 
 echo 'Counting #no-push commits.'
+set +e
 COUNT="$(git log "$MERGE_BASE"..HEAD | grep -E -c '^\s*#no-?push')"
+set -e
 echo "Found $COUNT #no-push commits."
 
 if (( COUNT == 0 )); then 
