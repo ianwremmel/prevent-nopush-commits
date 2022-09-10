@@ -1,0 +1,5 @@
+name: 'Prevent Nopush Commits'
+description: 'Prevents Nopush Commits'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
