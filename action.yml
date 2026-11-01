@@ -1,5 +1,10 @@
 name: 'Prevent Nopush Commits'
 description: 'Prevents Nopush Commits'
+branding:
+  icon: 'package'
+  color: 'red'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh
+      shell: bash

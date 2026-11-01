@@ -14,8 +14,12 @@ jobs:
     name: ianwremmel/prevent-nopush-commits
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - uses: ianwremmel/prevent-nopush-commits@v1.0.1
+    - uses: ianwremmel/prevent-nopush-commits@v2
 ```
+
+v2 is a composite action, so it runs on any runner or job container that has
+`bash` and `git`, including Kubernetes container mode runners. v1 is a Docker
+action and only runs where Docker container actions are supported.
