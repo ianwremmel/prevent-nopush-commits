@@ -6,5 +6,5 @@ branding:
 runs:
   using: 'composite'
   steps:
-    - run: ${{ github.action_path }}/entrypoint.sh
+    - run: '"$GITHUB_ACTION_PATH/entrypoint.sh"'
       shell: bash
