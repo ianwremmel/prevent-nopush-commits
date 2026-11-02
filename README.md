@@ -23,3 +23,8 @@ jobs:
 v2 is a composite action, so it runs on any runner or job container that has
 `bash` and `git`, including Kubernetes container mode runners. v1 is a Docker
 action and only runs where Docker container actions are supported.
+
+## Versions
+
+`@v2` tracks the latest 2.x release; `v2.0.0` is the first composite release.
+If you need the Docker action, pin `@v1.0.8`.
