@@ -16,3 +16,39 @@ jobs:
         fetch-depth: 0
     - name: self
       uses: ./
+  nopush-container:
+    runs-on: ubuntu-latest
+    container: buildpack-deps:bookworm-scm
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: self
+      uses: ./
+  container-negative:
+    runs-on: ubuntu-latest
+    container: buildpack-deps:bookworm-scm
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    # Commit HEAD's tree on top of HEAD~1 so the merge base never equals
+    # GITHUB_SHA, which would make the action exit early on pushes to master.
+    # --soft keeps the working tree, so `uses: ./` still runs this revision.
+    - name: add a nopush commit
+      run: |
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        git config user.name test
+        git config user.email test@example.com
+        git reset --soft HEAD~1
+        git commit --allow-empty -m '#no-push test'
+    - name: self
+      id: neg
+      continue-on-error: true
+      uses: ./
+    - name: assert the action failed
+      run: |
+        if [ "${{ steps.neg.outcome }}" != failure ]; then
+          echo "expected failure, got ${{ steps.neg.outcome }}"
+          exit 1
+        fi
